@@ -1,0 +1,844 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.page-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+/* Ensure the page is scrollable and the background image covers the entire page */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Ensure the body covers the full viewport height */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Disable scrolling */
+  font-family: 'Baloo', sans-serif;
+  color: #333;
+  background-image: url('../../images/enrollFORMbg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+/* Header */
+header {
+    background: url('../../images/bg/header2.png') no-repeat center center;
+    background-size: 100% 100%; /* Ensure the image covers the entire header */
+    height: 60px; /* Adjust the height to ensure the image takes over the entire header */
+    min-height: 90px; /* Add height to reveal background */
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header h1 img {
+  height: 50px;
+}
+
+/* Nav Bar */
+.nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+#nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: 'Unkempt', sans-serif;
+  font-weight: bold;
+}
+
+#nav-menu li a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  color: #824006;
+}
+
+#nav-menu li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+#nav-menu a,
+#nav-menu-mobile a {
+    font-size: 1rem !important;
+    font-weight: bold;
+}
+#nav-menu .nav-link,
+#nav-menu-mobile .nav-link {
+    font-size: 1rem !important; /* about 20px */
+    font-weight: bold;
+}
+
+/* Align search bar styles with index.css */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0; /* Remove gap between input and button */
+}
+
+.search-bar input {
+  border-radius: 20px 0 0 20px;
+  height: 38px;
+}
+
+search-bar button {
+  border-radius: 0 20px 20px 0;
+  height: 35px;
+  padding: 5px 10px; /* Adjust padding to make the button smaller */
+  font-size: 14px; /* Reduce font size for the icon */
+}
+
+/* Hamburger */
+.nav-toggle {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Turn the mobile nav button white */
+.nav-toggle {
+  color: white;
+  background-color: white; /* Set background to white */
+  border: none; /* Remove border */
+}
+
+/* Turn the mobile nav button icon white */
+.nav-toggle {
+  color: white; /* Set the icon color to white */
+  background: none; /* Ensure no background */
+  border: none; /* Remove border */
+}
+
+.nav-toggle:hover {
+  background-color: white; /* Ensure hover state remains white */
+}
+
+/* Ensure the mobile nav button icon does not turn black when clicked */
+.nav-toggle {
+  color: white; /* Keep the icon white */
+}
+
+.nav-toggle:active {
+  color: white; /* Prevent the icon from turning black when clicked */
+}
+
+/* Footer */
+.footer {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-col h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin: 5px 0;
+}
+
+.footer-col ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-col p {
+  max-width: 250px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-container ul {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+
+  .nav-container ul.active {
+    display: flex;
+  }
+
+  .footer-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .sectionactive h2 {
+    font-size: 28px;
+  }
+
+  .sectionactive h3 {
+    font-size: 22px;
+  }
+
+  /* Remove hover effect for the mobile view nav bar button */
+  .nav-toggle {
+    transition: none; /* Disable hover transition */
+  }
+
+  .nav-toggle:hover {
+    background-color: transparent; /* Ensure no hover effect */
+  }
+}
+
+/* Sidebar Mobile */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: #f6e346;
+  z-index: 1050;
+  padding-top: 80px;
+  transition: right 0.3s ease-in-out;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-sidebar.active {
+  right: 0;
+}
+
+.mobile-sidebar .nav-link {
+  display: block;
+  padding: 15px 20px;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-sidebar .nav-link:hover {
+  background-color: #f7f7f7;
+}
+
+.mobile-sidebar .search-bar input {
+  border-radius: 20px 0 0 20px;
+}
+
+.mobile-sidebar .search-bar button {
+  border-radius: 0 20px 20px 0;
+  height: 38px;
+}
+.mobile-sidebar .search-bar button i {
+  font-size: 16px; /* adjust as needed */
+  vertical-align: middle;
+}
+
+/* Adjust the size of the search bar icon specifically for mobile view */
+.mobile-sidebar .search-bar button {
+  font-size: 12px; /* Reduce font size for the icon */
+  padding: 4px 8px; /* Adjust padding to make the button smaller */
+  height: 35px; /* Match height with input */
+}
+
+/* Hamburger Toggle */
+.nav-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1100;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1040;
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+}
+
+
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+  .nav-container {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1325px) and (max-height: 925px) {
+  .nav-container {
+    display: none !important;
+  }
+
+  .mobile-sidebar {
+    display: block;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0; /* Remove gap between search button and search bar */
+  }
+
+  .search-bar input {
+    border-radius: 20px 0 0 20px;
+  }
+
+  .search-bar button {
+    border-radius: 0 20px 20px 0;
+  }
+}
+
+@media (max-width: 1325px) and (max-height: 925px) {
+  .nav-toggle {
+    display: block !important; /* Ensure the hamburger toggle button is visible */
+  }
+
+  .nav-container {
+    display: none !important; /* Hide the desktop navigation */
+  }
+
+  .mobile-sidebar {
+    display: block; /* Ensure the mobile sidebar is visible */
+  }
+}
+
+/* Data Privacy Notice Styling */
+.notice1 {
+  margin-top: 300px;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.not {
+  
+  max-width: 800px;
+  margin: clamp(1rem, 3vw, 2rem) auto;
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+.not h2 {
+  color: #ffffff;
+  font-size: 50px;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 2vw, 12px);
+  font-size: 50px;
+}
+
+
+.not p {
+  color: #bbbbbb;
+  line-height: 1.6;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  font-size: 30px;
+}
+
+.check-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.check-container label {
+  flex: 1 1 auto;
+  color: #ffffff;
+  font-size: 30px;
+  cursor: pointer; /* Added for better UX */
+  margin-right: 5px; /* Reduced spacing between label and radio button */
+  display: inline-block; /* Ensure proper alignment */
+}
+
+.check-container input[type="radio"] {   
+  margin-left: 0; /* Removed unnecessary left margin */
+  margin-right: 5px; /* Added small spacing to the right of the radio button */
+}
+
+.parent-info {
+    display: flex;
+    justify-content: flex-start; /* Align inputs to the left */
+    align-items: center; /* Align inputs vertically */
+    gap: 10px; /* Add spacing between inputs */
+    margin-bottom: 15px; /* Add spacing below the section */
+}
+
+.parent-info label {
+  flex: 1; /* Allow labels to take equal space */
+  text-align: left; /* Ensure text starts from the left */
+  margin-right: 10px; /* Add spacing between label and input */
+  font-size: 0.8rem; /* Reduced font size */
+  color: white;
+}
+
+.parent-info input {
+  font-size: 0.8rem; /* Reduced font size */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.parent-info input:focus {
+  border-color: #4CAF50; /* Highlight border on focus */
+  outline: none;
+}
+
+.info-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  grid-gap: 15px; 
+}
+
+.info-section label {
+  text-align: right; 
+  margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+  .info-section {
+    grid-template-columns: 1fr; /
+  }
+}
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+  animation: fadeIn 0.3s ease; /* Added transition effect */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.form-input {
+  width: 150px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin: 8px 0;
+}
+
+.form-input:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 5px; /* Added focus state */
+}
+
+.sec {
+display: flex;
+justify-content: flex-start; /* Align inputs to the left */
+align-items: center; /* Align inputs vertically */
+gap: 10px; /* Add spacing between inputs */
+margin-bottom: 15px; /* Add spacing below the section */
+}
+
+.sec label {
+  flex: 1; /* Allow labels to take equal space */
+  text-align: left; /* Ensure text starts from the left */
+  margin-right: 10px; /* Add spacing between label and input */
+  font-size: 20px; /* Reduced font size */
+  color: white;
+}
+
+.sec input {
+  font-size: 18px; /* Reduced font size */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sec input:focus {
+  border-color: #4CAF50; /* Highlight border on focus */
+  outline: none;
+}
+
+/* Adjusted sec1 inputs to be 120px wide and aligned to the left */
+.sec1 {
+    display: flex;
+    justify-content: flex-start; /* Align inputs and labels to the left */
+    align-items: center; /* Align inputs vertically */
+    gap: 10px; /* Add spacing between inputs and labels */
+    margin-bottom: 15px; /* Add spacing below the section */
+}
+
+.sec1 label {
+    flex: 0 0 auto; /* Labels take only the space they need */
+    text-align: left; /* Align labels to the left */
+    font-size: 20px; /* Reduced font size */
+    color: white;
+}
+
+.sec1 input {
+    width: 120px; /* Set input width to 120px */
+    padding: 8px; /* Adjust padding */
+    font-size: 18px; /* Reduced font size */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sec1 input:focus {
+    border-color: #4CAF50; /* Highlight border on focus */
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+    outline: none;
+}
+
+/* Centered the buttons */
+button {
+    display: block;
+    margin: 20px auto; /* Center buttons horizontally */
+    background: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+button:hover {
+    background: #2980b9;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.1);
+  vertical-align: middle; /* Better alignment with text */
+}
+
+/* Enhanced Responsive Breakpoints */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-size: contain; /* Better mobile header display */
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center; /* Centered navigation */
+  }
+
+  .search-bar {
+    max-width: 100%; /* Full width on mobile */
+  }
+
+
+  .not {
+    max-width: 95%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-input {
+    font-size: 12px;
+    padding: 10px 12px;
+    color: #e2dada;
+  }
+
+  button {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .check-container label {
+    max-width: 10px;
+  }
+}
+
+/* Added validation styles */
+.error {
+  color: #dc3545;
+  font-size: 0.875em;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+.invalid {
+  border-color: #dc3545 !important;
+  background: #fff0f0;
+}
+
+.error-summary {
+  background: #ffe6e6;
+  border: 2px solid #dc3545;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.error-summary h3 {
+  color: #dc3545;
+  margin-bottom: 0.5rem;
+}
+
+.error-summary ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+.error-summary li {
+  margin-bottom: 0.25rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.error-summary li::before {
+  content: "•";
+  color: #dc3545;
+  position: absolute;
+  left: 0;
+}
+
+#confirmation {
+  display: none;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.form-input:invalid {
+  border-color: #dc3545;
+}
+
+.required::after {
+  content: "*";
+  color: #dc3545;
+  margin-left: 3px;
+}
+
+.confirmation-message {
+  z-index: 1001; /* Higher than overlay */
+}
+
+.confirmation-overlay {
+  z-index: 1000; /* Lower than confirmation */
+}
+
+.confirmation-content {
+  position: relative;
+}
+
+.checkmark {
+  font-size: 4rem;
+  color: #4CAF50;
+  margin-bottom: 1.5rem;
+  animation: bounce 0.6s;
+}
+
+.confirmation-message h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.confirmation-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-20px);}
+  60% {transform: translateY(-10px);}
+}
+
+/* Add an overlay */
+.confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+.check-container label {
+
+  transition: all 0.3s ease;
+}
+
+.check-container input:checked + label {
+ 
+  border-color: #2196F3;
+}
+
+input:focus, button:focus {
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+  
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #ffe6e6;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.form-input.invalid {
+    border-color: red !important; /* Use !important to override other styles */
+    background: #fff0f0;
+}
+
+/* Enrollment Form Improvements */
+.enrollment-container {
+  position: absolute;
+  top: 67%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+}
+
+/* Add this to your enroll.css or inside a <style> tag in your <head> */
+body, input, select, textarea, label, button {
+    font-size: 1rem !important;
+}
+
+.form-input, .form-label, .sec label, .sec1 label, .parent-info label {
+    font-size: 1rem !important;
+}
+
+h2 {
+    font-size: 1rem !important;
+    
+}
+
+h3 {
+    font-size: 1rem !important;
+    color: #ffffff;
+}
+
+p {
+    font-size: 0.90rem !important;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}

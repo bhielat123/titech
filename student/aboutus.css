@@ -1,0 +1,557 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.page-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+/* Ensure the page is scrollable and the background image covers the entire page */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Ensure the body covers the full viewport height */
+  display: flex;
+  flex-direction: column;
+  overflow: auto; /* Enable scrolling */
+  font-family: 'Baloo', sans-serif;
+  color: #333;
+}
+
+body::before {
+  content: '';
+  position: fixed; /* Keep the background fixed during scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../images/frame2.jpg'); /* Set the background image */
+  background-size: cover; /* Ensure the image covers the entire page */
+  background-repeat: no-repeat; /* Prevent tiling */
+  background-position: center; /* Center the background image */
+  z-index: -1; /* Push the background behind the content */
+  filter: brightness(0.5); /* Optional: Adjust brightness for better blending */
+  
+}
+
+/* Header */
+header {
+    background: url('../../images/bg/header2.png') no-repeat center center;
+    background-size: 100% 100%; /* Ensure the image covers the entire header */
+    height: 60px; /* Adjust the height to ensure the image takes over the entire header */
+    min-height: 90px; /* Add height to reveal background */
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header h1 img {
+  height: 50px;
+}
+
+/* Nav Bar */
+.nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+#nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: 'Unkempt', sans-serif;
+  font-weight: bold;
+}
+
+#nav-menu li a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  color: #824006;
+}
+
+#nav-menu li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+/* Align search bar styles with index.css */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0; /* Remove gap between input and button */
+}
+
+.search-bar input {
+  border-radius: 20px 0 0 20px;
+  height: 38px;
+}
+
+.search-bar button {
+  border-radius: 0 20px 20px 0;
+  height: 35px;
+  padding: 5px 10px; /* Adjust padding to make the button smaller */
+  font-size: 14px; /* Reduce font size for the icon */
+}
+
+/* Hamburger */
+.nav-toggle {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Turn the mobile nav button white */
+.nav-toggle {
+  color: white;
+  background-color: white; /* Set background to white */
+  border: none; /* Remove border */
+}
+
+/* Turn the mobile nav button icon white */
+.nav-toggle {
+  color: white; /* Set the icon color to white */
+  background: none; /* Ensure no background */
+  border: none; /* Remove border */
+}
+
+.nav-toggle:hover {
+  background-color: white; /* Ensure hover state remains white */
+}
+
+/* Ensure the mobile nav button icon does not turn black when clicked */
+.nav-toggle {
+  color: white; /* Keep the icon white */
+}
+
+.nav-toggle:active {
+  color: white; /* Prevent the icon from turning black when clicked */
+}
+
+/* Footer */
+.footer {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-col h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin: 5px 0;
+}
+
+.footer-col ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-col p {
+  max-width: 250px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-container ul {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+
+  .nav-container ul.active {
+    display: flex;
+  }
+
+  .footer-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .sectionactive h2 {
+    font-size: 28px;
+  }
+
+  .sectionactive h3 {
+    font-size: 22px;
+  }
+
+  /* Remove hover effect for the mobile view nav bar button */
+  .nav-toggle {
+    transition: none; /* Disable hover transition */
+  }
+
+  .nav-toggle:hover {
+    background-color: transparent; /* Ensure no hover effect */
+  }
+}
+
+/* Sidebar Mobile */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: #f6e346;
+  z-index: 1050;
+  padding-top: 80px;
+  transition: right 0.3s ease-in-out;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-sidebar.active {
+  right: 0;
+}
+
+.mobile-sidebar .nav-link {
+  display: block;
+  padding: 15px 20px;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-sidebar .nav-link:hover {
+  background-color: #f7f7f7;
+}
+
+.mobile-sidebar .search-bar input {
+  border-radius: 20px 0 0 20px;
+}
+
+.mobile-sidebar .search-bar button {
+  border-radius: 0 20px 20px 0;
+  height: 38px;
+}
+.mobile-sidebar .search-bar button i {
+  font-size: 16px; /* adjust as needed */
+  vertical-align: middle;
+}
+
+/* Adjust the size of the search bar icon specifically for mobile view */
+.mobile-sidebar .search-bar button {
+  font-size: 12px; /* Reduce font size for the icon */
+  padding: 4px 8px; /* Adjust padding to make the button smaller */
+  height: 35px; /* Match height with input */
+}
+
+/* Hamburger Toggle */
+.nav-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1100;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1040;
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+}
+
+
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+  .nav-container {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1325px) and (max-height: 925px) {
+  .nav-container {
+    display: none !important;
+  }
+
+  .mobile-sidebar {
+    display: block;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0; /* Remove gap between search button and search bar */
+  }
+
+  .search-bar input {
+    border-radius: 20px 0 0 20px;
+  }
+
+  .search-bar button {
+    border-radius: 0 20px 20px 0;
+  }
+}
+
+@media (max-width: 1325px) and (max-height: 925px) {
+  .nav-toggle {
+    display: block !important; /* Ensure the hamburger toggle button is visible */
+  }
+
+  .nav-container {
+    display: none !important; /* Hide the desktop navigation */
+  }
+
+  .mobile-sidebar {
+    display: block; /* Ensure the mobile sidebar is visible */
+  }
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) { display: none; }
+    .topnav a.icon { float: right; display: block; }
+}
+
+.topnav.responsive { position: relative; }
+
+.topnav.responsive .icon { position: absolute; right: 0; top: 0; }
+
+.topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+#about-mission-vision {
+    background-color: rgba(33, 158, 188, 0.5); 
+    padding: 40px 20px; 
+    border: 2px solid #4CAF50; 
+    border-radius: 10px; 
+    margin-top: 20px; 
+    text-align: center; /* Center-align all text */
+}
+
+.content-container {
+    max-width: 800px; 
+    margin: auto; 
+}
+
+.content-container h2 {
+    text-align: center; 
+    color: #B22222; 
+    font-family: 'Rubik Puddles', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 20px; /* Add spacing below the heading */
+}
+
+.content-container p {
+    font-size: 1.4em; 
+    color: rgb(255, 255, 255); 
+    font-family: 'Unkempt', sans-serif; 
+    margin-top: -10px; /* Adjust spacing */
+    font-weight: bold;
+    text-align: center; /* Center-align the text */
+}
+
+.mission-vision-container {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; /* Align items vertically */
+    gap: 20px; /* Adds a 20px gap between each container */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+.mission-item, .vision-item {
+    flex: 1; 
+    background-color: #4CAF50; 
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15); 
+    text-align: center; /* Center-align content */
+}
+
+.mission-item h3, .vision-item h3 {
+    margin-top: 10px; 
+    color: #B22222; 
+    font-size: 2.5em; 
+    font-family: 'Rubik Puddles', cursive;
+}
+
+.mission-item i, .vision-item i {
+    font-size: 50px; 
+    color: #023047; 
+    margin-bottom: 15px; 
+}
+
+.separator {
+    width: 1px; 
+    background-color: #ccc; 
+    margin: auto; 
+    height: 100%; /* Ensure separator spans the full height */
+}
+
+.calendar-container {
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    margin-top: 20px; 
+}
+
+#calendar-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    margin-bottom: 20px; 
+}
+
+#calendar-controls button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px; 
+    transition: background-color 0.3s ease-in-out;
+}
+
+#calendar-controls button:hover {
+    background-color: #45a049; 
+}
+
+#calendar-content {
+    margin-top: 20px; 
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.8); 
+}
+
+.modal-content {
+    background-color: #fff; 
+    margin: 15% auto; 
+    padding: 20px;
+    border-radius: 10px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); 
+    max-width: 500px; 
+}
+
+.close {
+    color: #aaa; 
+    float: right; 
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000; 
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#calendar-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#calendar-content th, #calendar-content td {
+    border: 1px solid #ddd;
+    padding: 10px; 
+}
+
+#calendar-content th {
+    background-color: #f4f4f4; 
+}
+
+td:hover {
+    background-color: #e0f7fa; 
+}

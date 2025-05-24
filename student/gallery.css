@@ -1,0 +1,707 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.page-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+/* Ensure the page is scrollable and the background image covers the entire page */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Ensure the body covers the full viewport height */
+  display: flex;
+  flex-direction: column;
+  overflow: auto; /* Enable scrolling */
+  font-family: 'Baloo', sans-serif;
+  color: #333;
+}
+
+body::before {
+  content: '';
+  position: fixed; /* Keep the background fixed during scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../images/frame2.jpg'); /* Set the background image */
+  background-size: cover; /* Ensure the image covers the entire page */
+  background-repeat: no-repeat; /* Prevent tiling */
+  background-position: center; /* Center the background image */
+  z-index: -1; /* Push the background behind the content */
+  
+}
+
+/* Header */
+header {
+    background: url('../../images/bg/header2.png') no-repeat center center;
+    background-size: 100% 100%; /* Ensure the image covers the entire header */
+    height: 60px; /* Adjust the height to ensure the image takes over the entire header */
+    min-height: 90px; /* Add height to reveal background */
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header h1 img {
+  height: 50px;
+}
+
+/* Nav Bar */
+.nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+#nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: 'Unkempt', sans-serif;
+  font-weight: bold;
+}
+
+#nav-menu li a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  color: #824006;
+}
+
+#nav-menu li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+/* Align search bar styles with index.css */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0; /* Remove gap between input and button */
+}
+
+.search-bar input {
+  border-radius: 20px 0 0 20px;
+  height: 38px;
+}
+
+.search-bar button {
+  border-radius: 0 20px 20px 0;
+  height: 35px;
+  padding: 5px 10px; /* Adjust padding to make the button smaller */
+  font-size: 14px; /* Reduce font size for the icon */
+}
+
+/* Hamburger */
+.nav-toggle {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Turn the mobile nav button white */
+.nav-toggle {
+  color: white;
+  background-color: white; /* Set background to white */
+  border: none; /* Remove border */
+}
+
+/* Turn the mobile nav button icon white */
+.nav-toggle {
+  color: white; /* Set the icon color to white */
+  background: none; /* Ensure no background */
+  border: none; /* Remove border */
+}
+
+.nav-toggle:hover {
+  background-color: white; /* Ensure hover state remains white */
+}
+
+/* Ensure the mobile nav button icon does not turn black when clicked */
+.nav-toggle {
+  color: white; /* Keep the icon white */
+}
+
+.nav-toggle:active {
+  color: white; /* Prevent the icon from turning black when clicked */
+}
+
+/* Footer */
+.footer {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-col h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin: 5px 0;
+}
+
+.footer-col ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-col p {
+  max-width: 250px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-container ul {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+
+  .nav-container ul.active {
+    display: flex;
+  }
+
+  .footer-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .sectionactive h2 {
+    font-size: 28px;
+  }
+
+  .sectionactive h3 {
+    font-size: 22px;
+  }
+
+  /* Remove hover effect for the mobile view nav bar button */
+  .nav-toggle {
+    transition: none; /* Disable hover transition */
+  }
+
+  .nav-toggle:hover {
+    background-color: transparent; /* Ensure no hover effect */
+  }
+}
+
+/* Sidebar Mobile */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: #f6e346;
+  z-index: 1050;
+  padding-top: 80px;
+  transition: right 0.3s ease-in-out;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-sidebar.active {
+  right: 0;
+}
+
+.mobile-sidebar .nav-link {
+  display: block;
+  padding: 15px 20px;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-sidebar .nav-link:hover {
+  background-color: #f7f7f7;
+}
+
+.mobile-sidebar .search-bar input {
+  border-radius: 20px 0 0 20px;
+}
+
+.mobile-sidebar .search-bar button {
+  border-radius: 0 20px 20px 0;
+  height: 38px;
+}
+.mobile-sidebar .search-bar button i {
+  font-size: 16px; /* adjust as needed */
+  vertical-align: middle;
+}
+
+/* Adjust the size of the search bar icon specifically for mobile view */
+.mobile-sidebar .search-bar button {
+  font-size: 12px; /* Reduce font size for the icon */
+  padding: 4px 8px; /* Adjust padding to make the button smaller */
+  height: 35px; /* Match height with input */
+}
+
+/* Hamburger Toggle */
+.nav-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1100;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1040;
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+}
+
+
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+  .nav-container {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1325px) and (max-height: 925px) {
+  .nav-container {
+    display: none !important;
+  }
+
+  .mobile-sidebar {
+    display: block;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0; /* Remove gap between search button and search bar */
+  }
+
+  .search-bar input {
+    border-radius: 20px 0 0 20px;
+  }
+
+  .search-bar button {
+    border-radius: 0 20px 20px 0;
+  }
+}
+
+@media (max-width: 1325px) and (max-height: 925px) {
+  .nav-toggle {
+    display: block !important; /* Ensure the hamburger toggle button is visible */
+  }
+
+  .nav-container {
+    display: none !important; /* Hide the desktop navigation */
+  }
+
+  .mobile-sidebar {
+    display: block; /* Ensure the mobile sidebar is visible */
+  }
+}
+
+/* Main Content Styles */
+main {
+    padding: 2rem;
+}
+
+section {
+    padding: 4em 2em;
+    background-color: rgba(255, 255, 255, 0.8);  
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 4em;
+}
+
+.album h2 {
+    font-size: 4.5rem;
+    color: #B22222;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: Rubik Puddles, cursive;
+}
+
+/* Polaroid Gallery Styles */
+.photos {
+    width: 80%;
+    margin: 100px auto 50px ;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+}
+
+.photos img {
+    width: 100%;
+    cursor: pointer;
+    height: auto;
+    border-radius: 8px;
+    background-color: red;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.photos img:hover {
+    transform: scale(0.8) rotate(-15deg);
+    border-radius: 20px;
+    box-shadow: 0 32px 75px rgba(68,77,136,0.2);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+.modal img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Polaroid Image Grid */
+.wrapper {
+    width: 100%;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.polaroid {
+    background: #fff;
+    padding: 1rem;
+    box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.polaroid img {
+    max-width: 100%;
+    height: auto;
+}
+
+.caption {
+    font-size: 2.8rem;
+    text-align: center;
+    line-height: 2em;
+}
+
+.item {
+    width: 30%;
+    display: inline-block;
+    margin-top: 2rem;
+    /* Remove grayscale filter */
+    position: relative;
+}
+
+.item .polaroid:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    transition: all 0.35s;
+}
+
+.item:nth-of-type(4n+1) {
+    transform: scale(0.8, 0.8) rotate(5deg);
+    transition: all 0.35s;
+}
+
+.item:nth-of-type(4n+1) .polaroid:before {
+    transform: rotate(6deg);
+    height: 20%;
+    width: 47%;
+    bottom: 30px;
+    right: 12px;
+    box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.4);
+}
+
+.item:nth-of-type(4n+2) {
+    transform: scale(0.8, 0.8) rotate(-5deg);
+    transition: all 0.35s;
+}
+
+.item:nth-of-type(4n+2) .polaroid:before {
+    transform: rotate(-6deg);
+    height: 20%;
+    width: 47%;
+    bottom: 30px;
+    left: 12px;
+    box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.4);
+}
+
+.item:nth-of-type(4n+4) {
+    transform: scale(0.8, 0.8) rotate(3deg);
+    transition: all 0.35s;
+}
+
+.item:nth-of-type(4n+4) .polaroid:before {
+    transform: rotate(4deg);
+    height: 20%;
+    width: 47%;
+    bottom: 30px;
+    right: 12px;
+    box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.3);
+}
+
+.item:nth-of-type(4n+3) {
+    transform: scale(0.8, 0.8) rotate(-3deg);
+    transition: all 0.35s;
+}
+
+.item:nth-of-type(4n+3) .polaroid:before {
+    transform: rotate(-4deg);
+    height: 20%;
+    width: 47%;
+    bottom: 30px;
+    left: 12px;
+    box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.3);
+}
+
+.item:hover {
+    transform: scale(1, 1) rotate(0deg) !important;
+    transition: all 0.35s;
+}
+
+.item:hover .polaroid:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    transform: rotate(0deg);
+    height: 90%;
+    width: 90%;
+    bottom: 0%;
+    right: 5%;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+    transition: all 0.35s;
+}
+
+/* Polaroid Image Grid - Mobile Responsive */
+@media (max-width: 768px) {
+  .photos {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+  }
+
+  .photos img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .polaroid {
+    padding: 0.5rem;
+  }
+
+  .caption {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .photos {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 5px;
+  }
+
+  .photos img {
+    border-radius: 3px;
+  }
+
+  .caption {
+    font-size: 10px;
+  }
+}
+
+/* Responsive styles for the image page */
+
+/* General image styling */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Grid layout for images */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+  }
+
+  .image-grid img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Additional styling for captions */
+.image-caption {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  margin-top: 5px;
+}
+
+/* Ensure proper spacing for mobile view */
+@media (max-width: 480px) {
+  .image-caption {
+    font-size: 12px;
+  }
+}
+
+
+/* Next and Previous Buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .prev, .next {
+    font-size: 14px;
+    padding: 12px;
+    }
+
+    .modal-content {
+    max-width: 80%;
+    max-height: 80%;
+    }
+}

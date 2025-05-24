@@ -1,0 +1,420 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.page-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+body {
+  font-family: 'Baloo', sans-serif;
+  margin: 0;
+  padding: 0;
+  flex-direction: column; 
+  min-height: 100vh; /* Ensure body covers the full height of the viewport */
+  background-image: url('../../images/bgg.jpg');
+  background-size: cover; /* Ensures full coverage */
+  background-repeat: no-repeat; /* Prevents tiling */
+  background-attachment: scroll; /* Keeps the background in place while scrolling */
+  background-position: relative; /* Centers the background image */
+  color: #333;
+}
+
+/* Header */
+header {
+    background: url("../../images/bg/header2.png") no-repeat center center;
+    background-size: 100% 100%; /* Ensure the image covers the entire header */
+    height: 60px; /* Adjust the height to ensure the image takes over the entire header */
+    min-height: 90px; /* Add height to reveal background */
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header h1 img {
+  height: 50px;
+}
+
+/* Nav Bar */
+.nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+#nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: 'Unkempt', sans-serif;
+  font-weight: bold;
+}
+
+#nav-menu li a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  color: #824006;
+}
+
+#nav-menu li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+#nav-menu a,
+#nav-menu-mobile a {
+    font-size: 1rem !important;
+    font-weight: bold;
+}
+#nav-menu .nav-link,
+#nav-menu-mobile .nav-link {
+    font-size: 1rem !important; /* about 20px */
+    font-weight: bold;
+}
+/* Align search bar styles with index.css */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0; /* Remove gap between input and button */
+}
+
+.search-bar input {
+  border-radius: 20px 0 0 20px;
+  height: 38px;
+}
+
+.search-bar button {
+  border-radius: 0 20px 20px 0;
+  height: 35px;
+  padding: 5px 10px; /* Adjust padding to make the button smaller */
+  font-size: 14px; /* Reduce font size for the icon */
+}
+
+
+/* Hamburger */
+.nav-toggle {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Turn the mobile nav button white */
+.nav-toggle {
+  color: white;
+  background-color: white; /* Set background to white */
+  border: none; /* Remove border */
+}
+
+/* Turn the mobile nav button icon white */
+.nav-toggle {
+  color: white; /* Set the icon color to white */
+  background: none; /* Ensure no background */
+  border: none; /* Remove border */
+}
+
+.nav-toggle:hover {
+  background-color: white; /* Ensure hover state remains white */
+}
+
+/* Ensure the mobile nav button icon does not turn black when clicked */
+.nav-toggle {
+  color: white; /* Keep the icon white */
+}
+
+.nav-toggle:active {
+  color: white; /* Prevent the icon from turning black when clicked */
+}
+
+/* Home Section */
+.sectionactive {
+  padding: 50px 20px;
+  color: #000;
+}
+
+.sectionactive h2 {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.sectionactive h3 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.enroll-btn-wrapper {
+  text-align: left;
+  padding-left: 350px; /* Adds space from the left edge */
+}
+
+
+
+/* Enroll Now Button Styling */
+.enroll-btn {
+  display: inline-block;
+  margin: 20px 0; /* Adjust margin for spacing */
+  text-align: left; /* Align text to the left */
+  padding: 10px 20px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  background-color: red; /* Primary color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.enroll-btn:hover {
+  background-color: #cc0000; /* Darker shade for hover */
+  transform: scale(1.05);
+}
+
+/* Ensure the button starts on the left side */
+.sectionactive .enroll-btn {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .enroll-btn-wrapper {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .sectionactive .enroll-btn {
+    display: inline-block;
+  }
+}
+
+
+
+
+
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-container ul {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+
+  .nav-container ul.active {
+    display: flex;
+  }
+
+  
+
+  .sectionactive h2 {
+    font-size: 28px;
+  }
+
+  .sectionactive h3 {
+    font-size: 22px;
+  }
+
+  /* Remove hover effect for the mobile view nav bar button */
+  .nav-toggle {
+    transition: none; /* Disable hover transition */
+  }
+
+  .nav-toggle:hover {
+    background-color: transparent; /* Ensure no hover effect */
+  }
+}
+
+.mb-2 {
+  font-family: 'Baloo', sans-serif;
+  font-size: 20px;
+  color: #000000;
+  text-decoration: none;
+  margin-left: 0; /* Align closer to the edge */
+  text-align: left; /* Ensure text aligns to the left */
+  display: block; /* Ensures it occupies its own line */
+}
+.mb-1{
+  font-family: 'Fredoka One', sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  color: #FFA500;
+  text-decoration: none;
+  margin-left: 0; /* Align closer to the edge */
+  text-align: left; /* Ensure text aligns to the left */
+}
+
+/* Sidebar Mobile */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: #f6e346;
+  z-index: 1050;
+  padding-top: 80px;
+  transition: right 0.3s ease-in-out;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+.mobile-sidebar.active {
+  right: 0;
+}
+
+.mobile-sidebar .nav-link {
+  display: block;
+  padding: 15px 20px;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-sidebar .nav-link:hover {
+  background-color: #f7f7f7;
+}
+
+.mobile-sidebar .search-bar input {
+  border-radius: 20px 0 0 20px;
+}
+
+.mobile-sidebar .search-bar button {
+  border-radius: 0 20px 20px 0;
+  height: 38px;
+}
+.mobile-sidebar .search-bar button i {
+  font-size: 16px; /* adjust as needed */
+  vertical-align: middle;
+}
+
+/* Adjust the size of the search bar icon specifically for mobile view */
+.mobile-sidebar .search-bar button {
+  font-size: 12px; /* Reduce font size for the icon */
+  padding: 4px 8px; /* Adjust padding to make the button smaller */
+  height: 35px; /* Match height with input */
+}
+
+/* Hamburger Toggle */
+.nav-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1100;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1040;
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+}
+
+
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+  .nav-container {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1325px) and (max-height: 925px) {
+  .nav-container {
+    display: none !important;
+  }
+
+  .mobile-sidebar {
+    display: block;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0; /* Remove gap between search button and search bar */
+  }
+
+  .search-bar input {
+    border-radius: 20px 0 0 20px;
+  }
+
+  .search-bar button {
+    border-radius: 0 20px 20px 0;
+  }
+}
+
+@media (max-width: 1325px) and (max-height: 925px) {
+  .nav-toggle {
+    display: block !important; /* Ensure the hamburger toggle button is visible */
+  }
+
+  .nav-container {
+    display: none !important; /* Hide the desktop navigation */
+  }
+
+  .mobile-sidebar {
+    display: block; /* Ensure the mobile sidebar is visible */
+  }
+}
+
+

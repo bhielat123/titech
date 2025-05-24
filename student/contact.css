@@ -1,0 +1,540 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.page-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+/* Ensure the page is scrollable and the background image covers the entire page */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Ensure the body covers the full viewport height */
+  display: flex;
+  flex-direction: column;
+  overflow: auto; /* Enable scrolling */
+  font-family: 'Baloo', sans-serif;
+  color: #333;
+}
+
+body::before {
+  content: '';
+  position: fixed; /* Keep the background fixed during scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../images/frame2.jpg'); /* Set the background image */
+  background-size: cover; /* Ensure the image covers the entire page */
+  background-repeat: no-repeat; /* Prevent tiling */
+  background-position: center; /* Center the background image */
+  z-index: -1; /* Push the background behind the content */
+  
+}
+
+/* Header */
+header {
+    background: url('../../images/bg/header2.png') no-repeat center center;
+    background-size: 100% 100%; /* Ensure the image covers the entire header */
+    height: 60px; /* Adjust the height to ensure the image takes over the entire header */
+    min-height: 90px; /* Add height to reveal background */
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header h1 img {
+  height: 50px;
+}
+
+/* Nav Bar */
+/* Nav Bar */
+.nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  
+}
+
+#nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: 'Unkempt', sans-serif;
+  font-weight: bold;
+}
+
+#nav-menu li a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  color: #824006;
+}
+
+#nav-menu li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+#nav-menu a,
+#nav-menu-mobile a {
+    font-size: 1rem !important;
+    font-weight: bold;
+}
+#nav-menu .nav-link,
+#nav-menu-mobile .nav-link {
+    font-size: 1rem !important; /* about 20px */
+    font-weight: bold;
+}
+
+/* Align search bar styles with index.css */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0; /* Remove gap between input and button */
+}
+
+.search-bar input {
+  border-radius: 20px 0 0 20px;
+  height: 38px;
+}
+
+.search-bar button {
+  border-radius: 0 20px 20px 0;
+  height: 35px;
+  padding: 5px 10px; /* Adjust padding to make the button smaller */
+  font-size: 14px; /* Reduce font size for the icon */
+}
+
+/* Hamburger */
+.nav-toggle {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Turn the mobile nav button white */
+.nav-toggle {
+  color: white;
+  background-color: white; /* Set background to white */
+  border: none; /* Remove border */
+}
+
+/* Turn the mobile nav button icon white */
+.nav-toggle {
+  color: white; /* Set the icon color to white */
+  background: none; /* Ensure no background */
+  border: none; /* Remove border */
+}
+
+.nav-toggle:hover {
+  background-color: white; /* Ensure hover state remains white */
+}
+
+/* Ensure the mobile nav button icon does not turn black when clicked */
+.nav-toggle {
+  color: white; /* Keep the icon white */
+}
+
+.nav-toggle:active {
+  color: white; /* Prevent the icon from turning black when clicked */
+}
+
+/* Footer */
+.footer {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-col h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin: 5px 0;
+}
+
+.footer-col ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-col p {
+  max-width: 250px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-container ul {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+
+  .nav-container ul.active {
+    display: flex;
+  }
+
+  .footer-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .sectionactive h2 {
+    font-size: 28px;
+  }
+
+  .sectionactive h3 {
+    font-size: 22px;
+  }
+
+  /* Remove hover effect for the mobile view nav bar button */
+  .nav-toggle {
+    transition: none; /* Disable hover transition */
+  }
+
+  .nav-toggle:hover {
+    background-color: transparent; /* Ensure no hover effect */
+  }
+}
+
+/* Sidebar Mobile */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: #f6e346;
+  z-index: 1050;
+  padding-top: 80px;
+  transition: right 0.3s ease-in-out;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-sidebar.active {
+  right: 0;
+}
+
+.mobile-sidebar .nav-link {
+  display: block;
+  padding: 15px 20px;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-sidebar .nav-link:hover {
+  background-color: #f7f7f7;
+}
+
+.mobile-sidebar .search-bar input {
+  border-radius: 20px 0 0 20px;
+}
+
+.mobile-sidebar .search-bar button {
+  border-radius: 0 20px 20px 0;
+  height: 38px;
+}
+.mobile-sidebar .search-bar button i {
+  font-size: 16px; /* adjust as needed */
+  vertical-align: middle;
+}
+
+/* Adjust the size of the search bar icon specifically for mobile view */
+.mobile-sidebar .search-bar button {
+  font-size: 12px; /* Reduce font size for the icon */
+  padding: 4px 8px; /* Adjust padding to make the button smaller */
+  height: 35px; /* Match height with input */
+}
+
+/* Hamburger Toggle */
+.nav-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1100;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1040;
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+}
+
+
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+  .nav-container {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1325px) and (max-height: 925px) {
+  .nav-container {
+    display: none !important;
+  }
+
+  .mobile-sidebar {
+    display: block;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0; /* Remove gap between search button and search bar */
+  }
+
+  .search-bar input {
+    border-radius: 20px 0 0 20px;
+  }
+
+  .search-bar button {
+    border-radius: 0 20px 20px 0;
+  }
+}
+
+@media (max-width: 1325px) and (max-height: 925px) {
+  .nav-toggle {
+    display: block !important; /* Ensure the hamburger toggle button is visible */
+  }
+
+  .nav-container {
+    display: none !important; /* Hide the desktop navigation */
+  }
+
+  .mobile-sidebar {
+    display: block; /* Ensure the mobile sidebar is visible */
+  }
+}
+
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout for mobile */
+    gap: 20px;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 600px) {
+    .container {
+        grid-template-columns: 1fr 2fr; /* Two columns layout for larger screens */
+    }
+}
+
+.description,
+.contact-form,
+.faq-section {
+    background-color: var(--light-gray); /* Light background for sections */
+    padding: 15px;
+    border-radius: var(--border-radius);
+}
+
+h1, h2 {
+    text-align: left;
+    font-family: var(--font-family); /* Unkempt font for headings */
+}
+
+.faq-section {
+    margin-top: 20px; 
+}
+
+.faq-item {
+    margin-bottom: 15px; 
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+.form-group input, textarea{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+}
+
+.response-message button {
+   width: 100%;
+   padding: 10px;
+   background-color: var(--primary-color);
+   color: white;
+   border:none;
+   border-radius: var(--border-radius);
+   cursor:pointer; 
+}
+
+/* Add any additional styles you need here */
+
+.error-message {
+   color: var(--error-color); 
+}
+
+/* Apply handwritten font to the main content */
+.container, .description, .contact-form, .faq-section {
+    font-family: 'Patrick Hand', cursive; /* Handwritten font */
+}
+
+/* Exclude footer and nav bar from handwritten font */
+.footer, .mobile-sidebar {
+    font-family: 'Poppins', sans-serif; /* Default font */
+}
+
+
+.contact-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333; /* Darker text for readability */
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #4CAF50; /* Highlight border on focus */
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.contact-form button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.contact-form .error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+/* Add this to the bottom of your c:\xampp\htdocs\wrtclc\css\student\contact.css file */
+body, input, select, textarea, label, button {
+    font-size: 18px !important;
+}
+
+.contact-form label,
+.contact-form input,
+.contact-form textarea,
+.contact-form button,
+.faq-section h3,
+.faq-section p {
+    font-size: 18px !important;
+}
+
+h1, h2 {
+    font-size: 2rem !important;
+}
