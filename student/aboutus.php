@@ -1,11 +1,3 @@
-<?php
-require_once '../../database/dbconnection.php';
-
-$missions = $pdo->query("SELECT * FROM about_mission_vision WHERE type='mission'")->fetchAll(PDO::FETCH_ASSOC);
-$visions = $pdo->query("SELECT * FROM about_mission_vision WHERE type='vision'")->fetchAll(PDO::FETCH_ASSOC);
-$events = $pdo->query("SELECT * FROM about_calendar_events ORDER BY event_date ASC")->fetchAll(PDO::FETCH_ASSOC);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,11 +15,7 @@ $events = $pdo->query("SELECT * FROM about_calendar_events ORDER BY event_date A
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400..800&family=Fredoka:wght@300..700&family=Irish+Grover&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik+Puddles&family=Shadows+Into+Light&family=Unkempt:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/student/aboutus.css">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Font Awesome for extra icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/student/aboutus.css">
 </head>
 <body>
     <!-- Hamburger Toggle Button (Mobile Only) -->
@@ -39,13 +27,13 @@ $events = $pdo->query("SELECT * FROM about_calendar_events ORDER BY event_date A
     <!-- Header -->
 <header class="d-flex flex-row align-items-center justify-content-between px-4 py-3">
   <h1 class="m-0">
-    <a href="../../index.php">
+    <a href="/index.php">
       <img src="../../images/newlogo1.png" alt="Logo" style="height: 50px;">
     </a>
   </h1>
     <div class="nav-container d-none d-md-flex flex-row align-items-center">
         <ul id="nav-menu" class="d-flex flex-row list-unstyled gap-3 mb-0">
-        <li><a href="../../index.php" class="nav-link">Home</a></li>
+        <li><a href="/index.php" class="nav-link">Home</a></li>
         <li><a href="news.php" class="nav-link">News</a></li>
         <li><a href="faculty.php" class="nav-link">Faculty</a></li>
         <li><a href="gallery.php" class="nav-link">Gallery</a></li>
@@ -62,7 +50,7 @@ $events = $pdo->query("SELECT * FROM about_calendar_events ORDER BY event_date A
     <!-- Sidebar Navigation (Mobile Only) -->
     <div class="mobile-sidebar">
     <ul id="nav-menu-mobile" class="list-unstyled">
-        <li><a href="../../index.php" class="nav-link">Home</a></li>
+        <li><a href="/index.php" class="nav-link">Home</a></li>
         <li><a href="news.php" class="nav-link">News</a></li>
         <li><a href="faculty.php" class="nav-link">Faculty</a></li>
         <li><a href="gallery.php" class="nav-link">Gallery</a></li>
@@ -78,41 +66,31 @@ $events = $pdo->query("SELECT * FROM about_calendar_events ORDER BY event_date A
         </button>
     </div>
     </div>
-<body1 class="mx-3 mx-md-5">
-    <section id="mission-vision-container" class="container my-5">
-  <div class="row justify-content-center">
-    <div class="col-md-5 mb-4">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <h3 class="card-title text-primary mb-3">
-            <i class="fas fa-bullseye"></i> Mission
-          </h3>
-          <ul class="list-unstyled mb-0">
-            <?php foreach ($missions as $mv): ?>
-              <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i><?= htmlspecialchars($mv['content']) ?></li>
-            <?php endforeach; ?>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-5 mb-4">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <h3 class="card-title text-success mb-3">
-            <i class="fas fa-eye"></i> Vision
-          </h3>
-          <ul class="list-unstyled mb-0">
-            <?php foreach ($visions as $mv): ?>
-              <li class="mb-2"><i class="bi bi-star-fill text-warning me-2"></i><?= htmlspecialchars($mv['content']) ?></li>
-            <?php endforeach; ?>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  
+  <main>
+    <section id="about-mission-vision">
+        <div class="content-container">
+            <h2>Mission and Vision</h2>
+            <p>Our mission is to educate and empower students to become leaders and responsible citizens.</p>
 
+            <div class="mission-vision-container">
+                <div class="mission-item">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Mission</h3>
+                    <p>To provide quality education and develop strong ethical values.</p>
+                </div>
 
+                <div class="separator"></div>
+
+                <div class="vision-item">
+                    <i class="fas fa-eye"></i>
+                    <h3>Vision</h3>
+                    <p>To create a community of learners who are empowered to make positive changes in society.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+  
     <!-- Modal Code -->
     <div id="calendar-modal" class="modal">
         <div class="modal-content">
@@ -133,63 +111,31 @@ $events = $pdo->query("SELECT * FROM about_calendar_events ORDER BY event_date A
     </div>
   </main>
 
-<script src="../../https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script>
-const calendarEvents = <?= json_encode($events) ?>;
+// JavaScript code to manage calendar functionality
 
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 let currentDate = new Date();
 let currentMonth = currentDate.getMonth();
 let currentYear = currentDate.getFullYear();
 
-// Parse events into a map for quick lookup
-const eventMap = {};
-calendarEvents.forEach(ev => {
-    eventMap[ev.event_date] = ev;
-});
-
+// Render the calendar
 function renderCalendar() {
     const monthName = monthNames[currentMonth];
     const year = currentYear;
     document.getElementById('current-month').innerText = `${monthName} ${year}`;
 
-    // Get number of days in this month
-    const daysInMonth = new Date(year, currentMonth + 1, 0).getDate();
-    // First day of the month (0=Sun, 1=Mon, ...)
-    const firstDay = new Date(year, currentMonth, 1).getDay();
-
-    let calendarHTML = `<table class="table table-bordered"><tr>`;
-    // Empty cells for days before the 1st
-    for (let i = 0; i < firstDay; i++) {
-        calendarHTML += `<td></td>`;
-    }
-    for (let day = 1; day <= daysInMonth; day++) {
-        const dateStr = `${year}-${String(currentMonth+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-        const event = eventMap[dateStr];
-        let cellClass = event ? 'bg-warning text-dark calendar-event' : '';
-        calendarHTML += `<td class="${cellClass}" data-date="${dateStr}">${day}${event ? '<br><i class="bi bi-calendar-event"></i>' : ''}</td>`;
-        if ((firstDay + day) % 7 === 0) calendarHTML += `</tr><tr>`;
+    let calendarHTML = `<table role='grid'><tr>`;
+    for (let i = 1; i <= 31; i++) {
+        calendarHTML += `<td>${i}</td>`;
+        if (i % 7 === 0) {
+            calendarHTML += `</tr><tr>`;
+        }
     }
     calendarHTML += `</tr></table>`;
     document.getElementById('calendar-content').innerHTML = calendarHTML;
-
-    // Add click listeners to event days
-    document.querySelectorAll('.calendar-event').forEach(td => {
-        td.addEventListener('click', function() {
-            const date = this.getAttribute('data-date');
-            const ev = eventMap[date];
-            if (ev) {
-                showEventModal(ev);
-            }
-        });
-    });
-}
-
-function showEventModal(ev) {
-    const modal = document.getElementById('calendar-modal');
-    modal.querySelector('h2').innerText = ev.title;
-    modal.querySelector('p').innerHTML = `<strong>Date:</strong> ${ev.event_date}<br><strong>Description:</strong> ${ev.description || 'No description.'}`;
-    modal.style.display = 'block';
 }
 
 document.getElementById('prev-month').addEventListener('click', function() {
@@ -209,11 +155,6 @@ document.getElementById('next-month').addEventListener('click', function() {
     }
     renderCalendar();
 });
-
-// Modal close
-document.querySelector('#calendar-modal .close').onclick = function() {
-    document.getElementById('calendar-modal').style.display = 'none';
-};
 
 renderCalendar();
 </script>
@@ -237,42 +178,5 @@ renderCalendar();
     overlay.classList.remove('active');
   });
 </script>
-
-<style>
-.calendar-event {
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: background 0.2s;
-}
-.calendar-event:hover {
-    background: #ffc107 !important;
-}
-#calendar-modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0; top: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.5);
-    align-items: center; justify-content: center;
-}
-#calendar-modal .modal-content {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    max-width: 400px;
-    margin: 10% auto;
-    position: relative;
-}
-#calendar-modal .close {
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-</style>
-</body1>
 </body>
 </html>
-

@@ -1,13 +1,3 @@
-<?php
-require_once '../../database/dbconnection.php';
-
-function safeOutput($value) {
-    return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
-}
-
-// Fetch the latest main news
-$mainNews = $pdo->query("SELECT * FROM main_news ORDER BY id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,11 +5,16 @@ $mainNews = $pdo->query("SELECT * FROM main_news ORDER BY id DESC LIMIT 1")->fet
   <link rel="shortcut icon" href="../../images/wrlogo.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>West Rembo Learning Center</title> 
-  <link href="https://fonts.googleapis.com/css2?family=Unkempt:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/student/news.css">
-</head>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Unkempt:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;500&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/student/news.css">
 <body>
 <!-- Hamburger Toggle Button (Mobile Only) -->
 <button class="nav-toggle btn d-md-none" aria-label="toggle navigation">☰</button>
@@ -28,15 +23,15 @@ $mainNews = $pdo->query("SELECT * FROM main_news ORDER BY id DESC LIMIT 1")->fet
 <div class="overlay"></div>
 
 <!-- Header -->
-<header style= "font-size:1rem;" class="d-flex flex-row align-items-center justify-content-between px-4 py-3">
+<header class="d-flex flex-row align-items-center justify-content-between px-4 py-3">
   <h1 class="m-0">
-    <a href="../../index.php">
+    <a href="/index.php">
       <img src="../../images/newlogo1.png" alt="Logo" style="height: 50px;">
     </a>
   </h1>
   <div class="nav-container d-none d-md-flex flex-row align-items-center">
     <ul id="nav-menu" class="d-flex flex-row list-unstyled gap-3 mb-0">
-      <li><a href="../../index.php" class="nav-link">Home</a></li>
+      <li><a href="/index.php" class="nav-link">Home</a></li>
       <li><a href="news.php" class="nav-link">News</a></li>
       <li><a href="faculty.php" class="nav-link">Faculty</a></li>
       <li><a href="gallery.php" class="nav-link">Gallery</a></li>
@@ -53,7 +48,7 @@ $mainNews = $pdo->query("SELECT * FROM main_news ORDER BY id DESC LIMIT 1")->fet
 <!-- Sidebar Navigation (Mobile Only) -->
 <div class="mobile-sidebar">
   <ul id="nav-menu-mobile" class="list-unstyled">
-    <li><a href="../../index.php" class="nav-link">Home</a></li>
+    <li><a href="/index.php" class="nav-link">Home</a></li>
     <li><a href="news.php" class="nav-link">News</a></li>
     <li><a href="faculty.php" class="nav-link">Faculty</a></li>
     <li><a href="gallery.php" class="nav-link">Gallery</a></li>
@@ -74,60 +69,59 @@ $mainNews = $pdo->query("SELECT * FROM main_news ORDER BY id DESC LIMIT 1")->fet
   <h1>News Section</h1>
 </div>
 
-<!-- Main Content Area with F-layout -->
-<div class="content">
-  <!-- Main Content Placeholder -->
-  <div class="main d-flex flex-column align-items-center justify-content-center" style="min-height:350px;">
-  <?php if ($mainNews): ?>
-        <h2 style="font-size:2rem; color:#FFFFFF;"><?= safeOutput($mainNews['title']) ?></h2>
-          <p style="font-size:1rem; color:#FFFFFF;">
-        <?= safeOutput($mainNews['content']) ?>
-      </p>
-      <?php if (!empty($mainNews['image'])): ?>
-        <img src="../../<?= safeOutput($mainNews['image']) ?>" alt="Main News" style="max-width:800px; border-radius:14px; margin-bottom:18px;">
-      <?php endif; ?>
+  <!-- Main Content Area with F-layout -->
+  <div class="content">
+    <!-- Main Content -->
+	
+    <div class="main">
+      <h2>Elevating Dreams, One Step at a Time!</h2>
+      <p>A moment to celebrate the hard work, growth, and bright futures of our students as they take the next big step on their educational
+	  journey.Let’s cheer them on as they move up and shine even brighter!</p>
+      <!-- Image Section -->
+      <img src="/images//movUp.jpg" alt="Moving Up">
       
-      
-    <?php else: ?>
-      <h2 style="font-size:2rem; color:#FFFFFF;">No News Yet</h2>
-      <img src="../../images/sample-event.jpg" alt="Sample News" style="max-width:800px; border-radius:14px; margin-bottom:18px;">
-      
-      <p style="font-size:1rem; color:#FFFFFF;">
-        News and updates will appear here soon. Please check back later!
-      </p>
-    <?php endif; ?>
-  </div>
+    </div>
 
-  <!-- Sidebar Content Placeholder -->
-  <div class="sidebar">
-    <?php
-    // Fetch latest news (limit to 3 for sidebar)
-    $newsSidebar = $pdo->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 3")->fetchAll(PDO::FETCH_ASSOC);
-    ?>
-    <?php if (empty($newsSidebar)): ?>
-      <div class="sample-event mb-4" style="background: rgba(0,0,0,0.6); border-radius: 10px; padding: 20px 10px; color: #fff; text-align: center;">
-        <h2 style="font-size:1rem; color:#FFFFFF;">Sample Event</h2>
-        <a href="gallery.php">
-          <img src="../../images/sample-event.jpg" alt="Sample Event" style="max-width: 100%; border-radius: 8px;">
-        </a>
-        <p style="font-size:0.90rem; color:#FFFFFF;">
-          This is a sample event description. Add news in the admin panel to replace this sample.
-        </p>
-      </div>
-    <?php else: ?>
-      <?php foreach ($newsSidebar as $item): ?>
-        <div class="mb-4" style="background: rgba(0,0,0,0.6); border-radius: 10px; padding: 20px 10px; color: #fff; text-align: center;">
-          <h2 style="font-size:1rem; color:#FFFFFF;"><?= safeOutput($item['title']) ?></h2>
-          <?php if (!empty($item['image'])): ?>
-            <img src="../../<?= safeOutput($item['image']) ?>" alt="News Image" style="max-width: 100%; border-radius: 8px;">
-          <?php endif; ?>
-          <p style="font-size:0.90rem; color:#FFFFFF;"><?= safeOutput($item['content']) ?></p>
-          <small class="text-muted"><?= safeOutput($item['created_at']) ?></small>
-        </div>
-      <?php endforeach; ?>
-    <?php endif; ?>
+    <!-- Sidebar Content -->
+    <div class="sidebar">
+	<div class="header1">
+	<ul>
+	<h2>Other Notable Events</h2>
+	</div>
+
+    <!-- Wrap each image with a link to the album -->
+    <h3>Halloween Party</h3>
+    <a href="gallery.php">
+      <img src="/images/halloween.jpg" alt="Halloween">
+    </a>
+    <p>The Halloween celebration was a hit, featuring fun activities, creative costumes, and plenty of treats for everyone.</p>
+    
+    <h3>Wikang Katutubo Day</h3>
+    <a href="gallery.php">
+      <img src="/images//Wikatu.jpg" alt="Wika">
+    </a>
+    <p>Wikang Katutubo Day was successfully celebrated, highlighting the importance of preserving indigenous languages in the Philippines.</p>
+    
+    <h3>United Nations Day</h3>
+    <a href="gallery.php">
+      <img src="/images//und.jpg" alt="UND">
+    </a>
+    <p>United Nations Day was observed with various activities that focused on promoting global peace and unity.</p>
+    
+    <h3>Lakbay Aral</h3>
+    <a href="gallery.php">
+      <img src="/images//la.jpg" alt="LA">
+    </a>
+    <p>The Lakbay Aral trip provided students with valuable hands-on learning experiences as they explored new environments.</p>
+    
+    <h3>Celebrate Birthday with Us</h3>
+    <a href="gallery.php">
+      <img src="/images//bday.jpg" alt="BDay">
+    </a>
+    <p>Students gathered to celebrate the birthdays of their peers in a joyous and lively celebration.</p>
+    </ul>
+    </div>
   </div>
-</div>
 
 <!-- Footer -->
 <section class="footer mt-auto py-5">
@@ -170,7 +164,10 @@ $mainNews = $pdo->query("SELECT * FROM main_news ORDER BY id DESC LIMIT 1")->fet
   </div>
 </section>
 
+  <!-- Bootstrap JS (for dropdowns, etc.) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Responsive Nav Script -->
 <script>
   const navToggle = document.querySelector('.nav-toggle');
   const mobileSidebar = document.querySelector('.mobile-sidebar');
@@ -187,52 +184,5 @@ $mainNews = $pdo->query("SELECT * FROM main_news ORDER BY id DESC LIMIT 1")->fet
   });
 </script>
 
-<style>
-.content {
-  display: flex;
-  flex: 1;
-}
-
-.main {
-  width: 70%;
-  padding: 20px 10px 20px 10px;
-  background: rgba(0,0,0,0.6);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  color: #fff;
-  min-height: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.main img {
-  margin-top: 20px;
-  width: 100%;
-  height: auto;
-  margin-bottom: 20px;
-  max-width: 320px;
-}
-
-.sidebar {
-  width: 30%;
-  padding: 20px 10px 20px 10px;
-  background: rgba(0,0,0,0.6);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  margin-left: 20px;
-  height: fit-content;
-  max-height: 100vh;
-  overflow-y: auto;
-  color: #fff;
-}
-.sidebar img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-</style>
 </body>
 </html>

@@ -4,24 +4,16 @@ include_once '../../database/dbconnection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data
-    $name = htmlspecialchars($_POST['name']);
-    $email = htmlspecialchars($_POST['email']);
-    $phone = htmlspecialchars($_POST['phone']);
-    $message = htmlspecialchars($_POST['message']);
+    $name = $conn->real_escape_string($_POST['name']);
+    $email = $conn->real_escape_string($_POST['email']);
+    $phone = $conn->real_escape_string($_POST['phone']);
+    $message = $conn->real_escape_string($_POST['message']);
     $created_at = date('Y-m-d H:i:s'); // Get the current timestamp
 
-    try {
-        // Insert data into the contactus table using PDO
-        $sql = "INSERT INTO contactus (name, email, phone, message, created_at) VALUES (:name, :email, :phone, :message, :created_at)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ':name' => $name,
-            ':email' => $email,
-            ':phone' => $phone,
-            ':message' => $message,
-            ':created_at' => $created_at,
-        ]);
+    // Insert data into the contactus table
+    $sql = "INSERT INTO contactus (name, email, phone, message, created_at) VALUES ('$name', '$email', '$phone', '$message', '$created_at')";
 
+    if ($conn->query($sql) === TRUE) {
         echo "<script>
             document.addEventListener('DOMContentLoaded', function() {
                 const responseMessage = document.getElementById('formErrorMessage');
@@ -29,15 +21,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 responseMessage.style.color = 'green';
             });
         </script>";
-    } catch (PDOException $e) {
+    } else {
         echo "<script>
             document.addEventListener('DOMContentLoaded', function() {
                 const responseMessage = document.getElementById('formErrorMessage');
-                responseMessage.textContent = 'Error: " . $e->getMessage() . "';
+                responseMessage.textContent = 'Error: " . $conn->error . "';
                 responseMessage.style.color = 'red';
             });
         </script>";
     }
+
+    // Close the database connection
+    $conn->close();
 }
 ?>
 
@@ -56,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    <link href="https://fonts.googleapis.com/css2?family=Unkempt:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;500&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet"> <!-- Handwritten font -->
-    <link rel="stylesheet" href="../../css/student/contact.css">
+    <link rel="stylesheet" href="/css/student/contact.css">
 </head>
 <body>
    <!-- Hamburger Toggle Button (Mobile Only) -->
@@ -66,15 +61,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="overlay"></div>
 
     <!-- Header -->
-<header style= "font-size:1rem;" class="d-flex flex-row align-items-center justify-content-between px-4 py-3">
+<header class="d-flex flex-row align-items-center justify-content-between px-4 py-3">
   <h1 class="m-0">
-    <a href="../../index.php">
+    <a href="/index.php">
       <img src="../../images/newlogo1.png" alt="Logo" style="height: 50px;">
     </a>
   </h1>
     <div class="nav-container d-none d-md-flex flex-row align-items-center">
         <ul id="nav-menu" class="d-flex flex-row list-unstyled gap-3 mb-0">
-        <li><a href="../../index.php" class="nav-link">Home</a></li>
+        <li><a href="/index.php" class="nav-link">Home</a></li>
         <li><a href="news.php" class="nav-link">News</a></li>
         <li><a href="faculty.php" class="nav-link">Faculty</a></li>
         <li><a href="album.php" class="nav-link">Gallery</a></li>
@@ -91,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Sidebar Navigation (Mobile Only) -->
     <div class="mobile-sidebar">
     <ul id="nav-menu-mobile" class="list-unstyled">
-        <li><a href="../../index.php" class="nav-link">Home</a></li>
+        <li><a href="/index.php" class="nav-link">Home</a></li>
         <li><a href="news.php" class="nav-link">News</a></li>
         <li><a href="faculty.php" class="nav-link">Faculty</a></li>
         <li><a href="album.php" class="nav-link">Gallery</a></li>
@@ -219,10 +214,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Error message container
         const errorMessage = document.getElementById('formErrorMessage');
 
-        // Validate email format (allow any valid email)
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // Validate email domain
+        const emailPattern = /^[^@\s]+@(gmail\.com|yahoo\.com|outlook\.com)$/;
         if (!emailPattern.test(email)) {
-            errorMessage.textContent = 'Please enter a valid email address.';
+            errorMessage.textContent = 'Use a valid Email domain.';
             errorMessage.style.color = 'red';
             return;
         }

@@ -8,60 +8,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return ucwords(strtolower(trim($input)));
     }
 
-    $surname = formatInput($_POST['surname']);
-    $firstname = formatInput($_POST['firstname']);
-    $middlename = !empty($_POST['middlename']) ? formatInput($_POST['middlename']) : NULL;
-    $gender = formatInput($_POST['gender']);
-    $birthplace = formatInput($_POST['birthplace']);
-    $email = trim($_POST['email']); // Email should not be formatted
-    $dob = trim($_POST['dob']); // Date should not be formatted
-    $street = formatInput($_POST['street']);
-    $city = formatInput($_POST['city']);
-    $province = formatInput($_POST['province']);
-    $zipcode = trim($_POST['zipcode']); // Zipcode should not be formatted
-    $parentSurname = formatInput($_POST['parentSurname']);
-    $parentFirst = formatInput($_POST['parentFirst']);
-    $parentMiddle = formatInput($_POST['parentMiddle']);
-    $parentPhone = trim($_POST['parentPhone']); // Phone should not be formatted
-    $parentEmail = trim($_POST['parentEmail']); // Email should not be formatted
-    $parentOccupation = formatInput($_POST['parentOccupation']);
+    $surname = $conn->real_escape_string(formatInput($_POST['surname']));
+    $firstname = $conn->real_escape_string(formatInput($_POST['firstname']));
+    $middlename = !empty($_POST['middlename']) ? $conn->real_escape_string(formatInput($_POST['middlename'])) : NULL;
+    $gender = $conn->real_escape_string(formatInput($_POST['gender']));
+    $birthplace = $conn->real_escape_string(formatInput($_POST['birthplace']));
+    $email = $conn->real_escape_string(trim($_POST['email'])); // Email should not be formatted
+    $dob = $conn->real_escape_string(trim($_POST['dob'])); // Date should not be formatted
+    $street = $conn->real_escape_string(formatInput($_POST['street']));
+    $city = $conn->real_escape_string(formatInput($_POST['city']));
+    $province = $conn->real_escape_string(formatInput($_POST['province']));
+    $zipcode = $conn->real_escape_string(trim($_POST['zipcode'])); // Zipcode should not be formatted
+    $parentSurname = $conn->real_escape_string(formatInput($_POST['parentSurname']));
+    $parentFirst = $conn->real_escape_string(formatInput($_POST['parentFirst']));
+    $parentMiddle = $conn->real_escape_string(formatInput($_POST['parentMiddle']));
+    $parentPhone = $conn->real_escape_string(trim($_POST['parentPhone'])); // Phone should not be formatted
+    $parentEmail = $conn->real_escape_string(trim($_POST['parentEmail'])); // Email should not be formatted
+    $parentOccupation = $conn->real_escape_string(formatInput($_POST['parentOccupation']));
     $status = 'Pending'; // Set the status to Pending
     $created_at = date('Y-m-d H:i:s'); // Get the current timestamp
 
-    try {
-        // Insert data into the enrollment table
-        $sql = "INSERT INTO enrollment (surname, firstname, middlename, gender, birthplace, email, dob, street, city, province, zipcode, parentSurname, parentFirst, parentMiddle, parentPhone, parentEmail, parentOccupation, status, created_at) 
-                VALUES (:surname, :firstname, :middlename, :gender, :birthplace, :email, :dob, :street, :city, :province, :zipcode, :parentSurname, :parentFirst, :parentMiddle, :parentPhone, :parentEmail, :parentOccupation, :status, :created_at)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ':surname' => $surname,
-            ':firstname' => $firstname,
-            ':middlename' => $middlename,
-            ':gender' => $gender,
-            ':birthplace' => $birthplace,
-            ':email' => $email,
-            ':dob' => $dob,
-            ':street' => $street,
-            ':city' => $city,
-            ':province' => $province,
-            ':zipcode' => $zipcode,
-            ':parentSurname' => $parentSurname,
-            ':parentFirst' => $parentFirst,
-            ':parentMiddle' => $parentMiddle,
-            ':parentPhone' => $parentPhone,
-            ':parentEmail' => $parentEmail,
-            ':parentOccupation' => $parentOccupation,
-            ':status' => $status,
-            ':created_at' => $created_at,
-    ]);
+    // Insert data into the enrollment table
+    $sql = "INSERT INTO enrollment (surname, firstname, middlename, gender, birthplace, email, dob, street, city, province, zipcode, parentSurname, parentFirst, parentMiddle, parentPhone, parentEmail, parentOccupation, status, created_at) VALUES ('$surname', '$firstname', " . ($middlename !== NULL ? "'$middlename'" : "NULL") . ", '$gender', '$birthplace', '$email', '$dob', '$street', '$city', '$province', '$zipcode', '$parentSurname', '$parentFirst', '$parentMiddle', '$parentPhone', '$parentEmail', '$parentOccupation', '$status', '$created_at')";
 
+    if ($conn->query($sql) === TRUE) {
         echo "<script>
             alert('Enrollment data has been submitted successfully!');
             window.location.href = 'enroll.php?success=true';
         </script>";
-    } catch (PDOException $e) {
-        echo "<script>alert('Error: " . $e->getMessage() . "');</script>";
+    } else {
+        echo "<script>alert('Error: " . $conn->error . "');</script>";
     }
+
+    // Close the database connection
+    $conn->close();
 }
 ?>
 <!DOCTYPE html>
@@ -78,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <link href="https://fonts.googleapis.com/css2?family=Baloo&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Unkempt:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/student/enroll.css">
+        <link rel="stylesheet" href="/css/student/enroll.css">
 </head>
 <body>
         <!-- Hamburger Toggle Button (Mobile Only) -->
@@ -90,13 +70,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Header -->
 <header class="d-flex flex-row align-items-center justify-content-between px-4 py-3">
   <h1 class="m-0">
-    <a href="../../index.php">
+    <a href="/index.php">
       <img src="../../images/newlogo1.png" alt="Logo" style="height: 50px;">
     </a>
   </h1>
     <div class="nav-container d-none d-md-flex flex-row align-items-center">
         <ul id="nav-menu" class="d-flex flex-row list-unstyled gap-3 mb-0">
-        <li><a href="../../index.php" class="nav-link">Home</a></li>
+        <li><a href="/index.php" class="nav-link">Home</a></li>
         <li><a href="news.php" class="nav-link">News</a></li>
         <li><a href="faculty.php" class="nav-link">Faculty</a></li>
         <li><a href="gallery.php" class="nav-link">Gallery</a></li>
@@ -113,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Sidebar Navigation (Mobile Only) -->
     <div class="mobile-sidebar">
     <ul id="nav-menu-mobile" class="list-unstyled">
-        <li><a href="../../index.php" class="nav-link">Home</a></li>
+        <li><a href="/index.php" class="nav-link">Home</a></li>
         <li><a href="news.php" class="nav-link">News</a></li>
         <li><a href="faculty.php" class="nav-link">Faculty</a></li>
         <li><a href="gallery.php" class="nav-link">Gallery</a></li>
@@ -131,7 +111,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <div class="enrollment-container">
         <form id="enrollmentForm" action="enroll.php" method="POST">
-        <br> <br> <br>
             <!-- Section 1: Data Privacy Notice -->
             <div id="page1" class="page active">
                 <section class="not">
@@ -209,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <!-- Section 4: Parent Information -->
             <div id="page4" class="page">
-                <h2 style= "color: #ffffff">Parent Information</h2>
+                <h2>Parent Information</h2>
                 <section class="parent-info">
                     <label for="parentSurname">Surname:</label>
                     <input type="text" id="parentSurname" name="parentSurname" class="form-input" required>
@@ -234,15 +213,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
     </div>
-
-    <!-- Success Modal -->
-<div class="modal" id="enroll-success-modal" tabindex="-1" style="display:none; background:rgba(0,0,0,0.5); position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:9999; align-items:center; justify-content:center;">
-  <div style="background:#fff; padding:2rem; border-radius:10px; max-width:350px; margin:auto; text-align:center;">
-    <h4>Enrollment Submitted</h4>
-    <p>Please wait for confirmation that will be sent to your Gmail if you are accepted or Declined.</p>
-    <button id="close-modal-btn" class="btn btn-primary mt-2">OK</button>
-  </div>
-</div>
     </body>
 
     <script>
@@ -321,33 +291,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     document.querySelector('.submit-btn').addEventListener('click', function (event) {
         const dobInput = document.getElementById('dob');
         const dob = dobInput.value;
-        const errorMessage = this.closest('.page').querySelector('.error-message');
+        const errorMessage = document.querySelector('.error-message');
 
         if (!validateAge(dob)) {
             event.preventDefault();
             errorMessage.textContent = 'Age must be between 5 and 15 years old to enroll.';
             errorMessage.style.color = 'red';
             dobInput.classList.add('invalid');
-            showPage(4);
         } else {
             errorMessage.textContent = '';
             dobInput.classList.remove('invalid');
         }
     });
-
-    // Close modal button event listener
-    document.getElementById('close-modal-btn').addEventListener('click', function() {
-        document.getElementById('enroll-success-modal').style.display = 'none';
-        window.location.href = 'enroll.php'; // Redirect to the enrollment page
-    });
-
-    
-    if (window.location.search.includes('success=true')) {
-    document.getElementById('enroll-success-modal').style.display = 'flex';
-    document.getElementById('close-modal-btn').onclick = function() {
-        window.location.href = 'enroll.php';
-    };
-}
 </script>
             
              <!-- Bootstrap JS (for dropdowns, etc.) -->

@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400..800&family=DM+Serif+Text:ital@0;1&family=Fredoka:wght@300..700&family=Funnel+Display:wght@300..800&family=Irish+Grover&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik+Puddles&family=Shadows+Into+Light&family=Unkempt:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/student/faculty.css">
+    <link rel="stylesheet" href="/css/student/faculty.css">
     <title>Faculty and Staff</title>
 </head>
 <body>
@@ -23,13 +23,13 @@
 <!-- Header -->
 <header class="d-flex flex-row align-items-center justify-content-between px-4 py-3">
   <h1 class="m-0">
-    <a href="../../index.php">
+    <a href="/index.php">
       <img src="../../images/newlogo1.png" alt="Logo" style="height: 50px;">
     </a>
   </h1>
   <div class="nav-container d-none d-md-flex flex-row align-items-center">
     <ul id="nav-menu" class="d-flex flex-row list-unstyled gap-3 mb-0">
-      <li><a href="../../index.php" class="nav-link">Home</a></li>
+      <li><a href="/index.php" class="nav-link">Home</a></li>
       <li><a href="news.php" class="nav-link">News</a></li>
       <li><a href="faculty.php" class="nav-link">Faculty</a></li>
       <li><a href="gallery.php" class="nav-link">Gallery</a></li>
@@ -46,7 +46,7 @@
 <!-- Sidebar Navigation (Mobile Only) -->
 <div class="mobile-sidebar">
   <ul id="nav-menu-mobile" class="list-unstyled">
-    <li><a href="../../index.php" class="nav-link">Home</a></li>
+    <li><a href="/index.php" class="nav-link">Home</a></li>
     <li><a href="news.php" class="nav-link">News</a></li>
     <li><a href="faculty.php" class="nav-link">Faculty</a></li>
     <li><a href="gallery.php" class="nav-link">Gallery</a></li>
@@ -66,21 +66,52 @@
     <!-- Main Heading -->
 
     <!-- Faculty Section -->
-    <?php
-require_once '../../database/dbconnection.php';
-$facultyList = $pdo->query("SELECT * FROM faculty ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
-?>
-<section class="faculty-section">
-    <h2>Meet Our Dedicated Faculty and Staff</h2>
-    <div class="faculty-list">
-        <?php foreach ($facultyList as $faculty): ?>
-        <div class="faculty-item">
-            <img class="faculty-photo" src="../../<?= htmlspecialchars($faculty['image']) ?>">
-            <p><?= htmlspecialchars($faculty['name']) ?></p>
+    <section class="faculty-section">
+        <h2>Meet Our Dedicated Faculty and Staff</h2>
+        <div class="faculty-list">
+            <!-- Faculty Member 1: Maria Paz Yanga -->
+            <div class="faculty-item">
+                <img class="faculty-photo" src="../../images/Faculty/448795072_8052767738074848_397751384807239059_n.jpg">
+                <p>Maria Paz Yanga</p>
+            </div>
+            
+            <!-- Faculty Member 2: Conchita Domingo -->
+            <div class="faculty-item">
+                <img class="faculty-photo" src="../../images/Faculty/40513332_2234230923465682_571622591903563776_n.jpg">
+                <p>Conchita Domingo</p>
+            </div>
+            
+            <!-- Faculty Member 3: Jovelyn Medina -->
+            <div class="faculty-item">
+                <img class="faculty-photo" src="../../images/Faculty/461714523_3884580928532664_3380650693360201817_n.jpg">
+                <p>Jovelyn Medina</p>
+            </div>
+            
+            <!-- Faculty Member 4: Marjune Buenaobra -->
+            <div class="faculty-item">
+                <img class="faculty-photo" src="../../images/Faculty/Screenshot%202024-11-25%20222729.png">
+                <p>Marjune Buenaobra</p>
+            </div>
+            
+            <!-- Faculty Member 5: Ruby Camara Gisala -->
+            <div class="faculty-item">
+                <img class="faculty-photo" src="../../images/Faculty/292498537_5408445059198335_3921681256179007700_n.jpg">
+                <p>Ruby Camara Gisala</p>
+            </div>
+            
+            <!-- Faculty Member 6: Dofel Tuliao Singayan -->
+            <div class="faculty-item">
+                <img class="faculty-photo" src="../../images/Faculty/Screenshot%202024-11-25%20223211.png">
+                <p>Dofel Tuliao Singayan</p>
+            </div>
+            
+            <!-- Faculty Member 7: Kate Cabangisan -->
+            <div class="faculty-item">
+                <img class="faculty-photo" src="../../images/Faculty/296645885_5486893248033316_3458465720004103623_n.jpg">
+                <p>Kate Cabangisan</p>
+            </div>
         </div>
-        <?php endforeach; ?>
-    </div>
-</section>
+    </section>
 
 
 <!-- Footer -->
@@ -99,8 +130,8 @@ $facultyList = $pdo->query("SELECT * FROM faculty ORDER BY id DESC")->fetchAll(P
       <div class="col-md-3 footer-col mb-4">
         <h4>Explore</h4>
         <ul class="links list-unstyled">
-          <li><a href="../../gallery.php">Gallery</a></li>
-          <li><a href="../../faculty.php">Faculty</a></li>
+          <li><a href="gallery.php">Gallery</a></li>
+          <li><a href="faculty.php">Faculty</a></li>
         </ul>
       </div>
       <div class="col-md-3 footer-col mb-4">
